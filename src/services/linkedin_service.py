@@ -1,18 +1,27 @@
 import requests
 import os
+from dotenv import load_dotenv 
 
-ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+load_dotenv()
+
+
+
+
+ACCESS_TOKEN = os.environ.get("LINKEDIN_ACCESS_TOKEN")
 
 POST_URL = "https://api.linkedin.com/rest/posts"
 
 AUTHOR_URN = "urn:li:person:YOUR_PERSON_ID"
+ 
+LINKEDINURL = os.environ.get("LINKEDINURL")
 
-IMAGE_URN = "urn:li:digitalmediaAsset:YOUR_IMAGE_URN"
+IMAGE_URN = f"urn:li:digitalmediaAsset:{LINKEDINURL}"
 
 headers = {
     "Authorization": f"Bearer {ACCESS_TOKEN}",
     "Content-Type": "application/json",
-    "X-Restli-Protocol-Version": "2.0.0"
+    "X-Restli-Protocol-Version": "2.0.0",
+    "LinkedIn-Version": "202306"
 }
 
 payload = {
